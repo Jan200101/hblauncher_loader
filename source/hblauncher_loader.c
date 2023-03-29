@@ -11,8 +11,6 @@
 extern u32 PAYLOAD_TEXTADDR[];
 extern u32 PAYLOAD_TEXTMAXSIZE;
 
-extern Handle gspGpuHandle;
-
 u8 *filebuffer = NULL;
 u32 filebuffer_maxsize;
 
@@ -430,7 +428,7 @@ Result load_hblauncher()
 	paramblk[0x1c>>2] = (u32)gxlowcmd_4;
 	paramblk[0x20>>2] = (u32)GSPGPU_FlushDataCache;
 	paramblk[0x48>>2] = 0x8d;//flags
-	paramblk[0x58>>2] = (u32)&gspGpuHandle;
+	paramblk[0x58>>2] = (u32)gspGetSessionHandle();
 
 	#ifdef VERBOSE
 	printf("Jumping into the payload...\n");
